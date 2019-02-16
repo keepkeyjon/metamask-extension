@@ -51,6 +51,7 @@ const seedPhraseVerifier = require('./lib/seed-phrase-verifier')
 const log = require('loglevel')
 const TrezorKeyring = require('eth-trezor-keyring')
 const LedgerBridgeKeyring = require('eth-ledger-bridge-keyring')
+const KeepKeyKeyring = require('eth-keepkey-keyring')
 const HW_WALLETS_KEYRINGS = [TrezorKeyring.type, LedgerBridgeKeyring.type]
 const EthQuery = require('eth-query')
 const ethUtil = require('ethereumjs-util')
@@ -634,6 +635,8 @@ module.exports = class MetamaskController extends EventEmitter {
       case 'ledger':
         keyringName = LedgerBridgeKeyring.type
         break
+      case 'keepkey':
+        keyringName = KeepKeyKeyring.type
       default:
         throw new Error('MetamaskController:getKeyringForDevice - Unknown device')
     }

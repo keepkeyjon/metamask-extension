@@ -38,6 +38,16 @@ class ConnectScreen extends Component {
         )
     }
 
+    renderConnectToTrezorButton () {
+        return h(
+            `button.hw-connect__btn${this.state.selectedDevice === 'keepkey' ? '.selected' : ''}`,
+            { onClick: _ => this.setState({selectedDevice: 'keepkey'}) },
+            h('img.hw-connect__btn__img', {
+              src: 'images/keepkey-logo.svg',
+            })
+        )
+    }
+
     renderButtons () {
       return (
         h('div', {}, [
@@ -87,10 +97,11 @@ class ConnectScreen extends Component {
       const links = {
         trezor: `<a class='hw-connect__get-hw__link' href='https://shop.trezor.io/?a=metamask' target='_blank'>Trezor</a>`,
         ledger: `<a class='hw-connect__get-hw__link' href='https://www.ledger.com/products/ledger-nano-s?r=17c4991a03fa&tracker=MY_TRACKER' target='_blank'>Ledger</a>`,
+        keepkey: `<a class='hw-connect__get-hw__link' href='https://keepkey.myshopify.com/' target='_blank'>KeepKey</a>`,
       }
 
       const text = this.context.t('orderOneHere')
-      const response = text.replace('Trezor', links.trezor).replace('Ledger', links.ledger)
+      const response = text.replace('Trezor', links.trezor).replace('Ledger', links.ledger).replace('KeepKey', links.keepkey)
 
       return h('div.hw-connect__get-hw__msg', { dangerouslySetInnerHTML: {__html: response }})
     }

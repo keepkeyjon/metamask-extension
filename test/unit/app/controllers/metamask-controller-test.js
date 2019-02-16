@@ -313,6 +313,16 @@ describe('MetaMaskController', function () {
       assert.equal(keyrings.length, 1)
     })
 
+    it('should add the KeepKey Hardware keyring', async function () {
+      sinon.spy(metamaskController.keyringController, 'addNewKeyring')
+      await metamaskController.connectHardware('keepkey', 0).catch((e) => null)
+      const keyrings = await metamaskController.keyringController.getKeyringsByType(
+        'Trezor Hardware'
+      )
+      assert.equal(metamaskController.keyringController.addNewKeyring.getCall(0).args, 'KeepKey Hardware')
+      assert.equal(keyrings.length, 1)
+    })
+
   })
 
   describe('checkHardwareStatus', function () {
@@ -324,9 +334,15 @@ describe('MetaMaskController', function () {
       }
     })
 
-    it('should be locked by default', async function () {
+    it('should find that Trezors are locked by default', async function () {
       await metamaskController.connectHardware('trezor', 0).catch((e) => null)
       const status = await metamaskController.checkHardwareStatus('trezor')
+      assert.equal(status, false)
+    })
+
+    it('should find that KeepKeys are locked by default', async function () {
+      await metamaskController.connectHardware('keepkey', 0).catch((e) => null)
+      const status = await metamaskController.checkHardwareStatus('keepkey')
       assert.equal(status, false)
     })
   })
@@ -340,11 +356,23 @@ describe('MetaMaskController', function () {
       }
     })
 
-    it('should wipe all the keyring info', async function () {
+    it('should wipe all the keyring info on a Trezor', async function () {
       await metamaskController.connectHardware('trezor', 0).catch((e) => null)
       await metamaskController.forgetDevice('trezor')
       const keyrings = await metamaskController.keyringController.getKeyringsByType(
         'Trezor Hardware'
+      )
+
+      assert.deepEqual(keyrings[0].accounts, [])
+      assert.deepEqual(keyrings[0].page, 0)
+      assert.deepEqual(keyrings[0].isUnlocked(), false)
+    })
+
+    it('should wipe all the keyring info on a KeepKey', async function () {
+      await metamaskController.connectHardware('keepkey', 0).catch((e) => null)
+      await metamaskController.forgetDevice('keepkey')
+      const keyrings = await metamaskController.keyringController.getKeyringsByType(
+        'KeepKey Hardware'
       )
 
       assert.deepEqual(keyrings[0].accounts, [])
