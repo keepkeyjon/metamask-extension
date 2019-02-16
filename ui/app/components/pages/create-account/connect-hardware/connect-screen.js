@@ -38,12 +38,12 @@ class ConnectScreen extends Component {
         )
     }
 
-    renderConnectToTrezorButton () {
+    renderConnectToKeepKeyButton () {
         return h(
             `button.hw-connect__btn${this.state.selectedDevice === 'keepkey' ? '.selected' : ''}`,
             { onClick: _ => this.setState({selectedDevice: 'keepkey'}) },
             h('img.hw-connect__btn__img', {
-              src: 'images/keepkey-logo.svg',
+              src: 'images/keepkey-logo.png',
             })
         )
     }
@@ -54,6 +54,7 @@ class ConnectScreen extends Component {
           h('div.hw-connect__btn-wrapper', {}, [
             this.renderConnectToLedgerButton(),
             this.renderConnectToTrezorButton(),
+            this.renderConnectToKeepKeyButton(),
           ]),
           h(Button, {
             type: 'confirm',
