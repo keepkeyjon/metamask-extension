@@ -637,6 +637,7 @@ module.exports = class MetamaskController extends EventEmitter {
         break
       case 'keepkey':
         keyringName = KeepKeyKeyring.type
+        break
       default:
         throw new Error('MetamaskController:getKeyringForDevice - Unknown device')
     }
