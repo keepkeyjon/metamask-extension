@@ -80,6 +80,7 @@
     ]
   },
   "dependencies": {
+    "@keepkey/keepkey.js": "^1.2.0",
     "@material-ui/core": "1.0.0",
     "@sentry/browser": "^4.1.1",
     "@zxing/library": "^0.8.0",
@@ -123,10 +124,9 @@
     "eth-method-registry": "^1.0.0",
     "eth-phishing-detect": "^1.1.4",
     "eth-query": "^2.1.2",
-    "eth-trezor-keyring": "^0.2.0",
-    "eth-keepkey-keyring": "file:../eth-keepkey-keyring",
     "eth-sig-util": "^2.0.2",
     "eth-token-tracker": "^1.1.5",
+    "eth-trezor-keyring": "file:../eth-keepkey-keyring",
     "ethereumjs-abi": "^0.6.4",
     "ethereumjs-tx": "^1.3.0",
     "ethereumjs-util": "github:ethereumjs/ethereumjs-util#ac5d0908536b447083ea422b435da27f26615de9",
