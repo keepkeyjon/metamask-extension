@@ -72,7 +72,15 @@
     "activeTab",
     "webRequest",
     "*://*.eth/",
-    "notifications"
+    "notifications",
+    {
+      "usbDevices": [
+        {
+          "vendorId": 11044,
+          "productId": 2
+        }
+      ]
+    }
   ],
   "web_accessible_resources": [
     "inpage.js",
