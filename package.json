@@ -124,6 +124,7 @@
     "eth-phishing-detect": "^1.1.4",
     "eth-query": "^2.1.2",
     "eth-trezor-keyring": "^0.2.0",
+    "eth-keepkey-keyring": "file:../eth-keepkey-keyring",
     "eth-sig-util": "^2.0.2",
     "eth-token-tracker": "^1.1.5",
     "ethereumjs-abi": "^0.6.4",
